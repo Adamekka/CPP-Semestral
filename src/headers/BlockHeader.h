@@ -7,8 +7,6 @@
 #include <array>
 #include <cstdint>
 
-#endif //SEMESTRAL_BLOCKHEADER_H
-
 using Sha256HashRepr = std::array<uint8_t, 32>;
 
 struct BlockHeader {
@@ -19,3 +17,5 @@ struct BlockHeader {
     uint32_t bits;
     uint32_t nonce;
 };
+
+#endif //SEMESTRAL_BLOCKHEADER_H
