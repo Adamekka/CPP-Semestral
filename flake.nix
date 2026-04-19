@@ -19,16 +19,23 @@
         { config, pkgs, ... }:
         {
           devShells.default = pkgs.mkShell.override { stdenv = pkgs.llvmPackages_latest.libcxxStdenv; } {
-            packages = with pkgs; [
-              clang-tools
-              clang-analyzer
-              cmake
-              lldb
-              ninja
-              binutils
-              gemini-cli
-              pkg-config
-            ];
+            packages =
+              with pkgs;
+              [
+                clang-tools
+                clang-analyzer
+                cmake
+                lldb
+                ninja
+              ]
+              ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+                binutils
+              ]
+              ++ [
+                pkg-config
+                boost
+                openssl
+              ];
 
             shellHooks = "";
           };
